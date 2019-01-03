@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
 
 android {
     compileSdkVersion 28
@@ -58,16 +57,16 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 //项目主页
-def siteUrl = 'https://github.com/findsdk'
+def siteUrl = SITE_URL
 //项目的版本控制地址
-def gitUrl = 'https://github.com/findsdk'
+def gitUrl = GIT_URL
 
 //发布到组织名称名字，必须填写
-group = "com.findsdk.library"
+group = GROUP_ID
 //发布到JCenter上的项目名字，必须填写
-def libName = "fileprovider"
+def libName = ARTIFACT_ID
 // 版本号，下次更新是只需要更改版本号即可
-version = "0.0.1"
+version = LIB_VERSION_NAME
 /**  上面配置后上传至JCenter后的编译路径是这样的： compile 'group:libName:version'  **/
 
 task sourcesJar(type: Jar) {
@@ -75,13 +74,14 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 task javadoc(type: Javadoc) {
+    excludes = ['**/*.kt']
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     options.encoding "UTF-8"
     options.charSet 'UTF-8'
     options.author true
     options.version true
-    options.links "https://github.com/findsdk"
+    options.links SITE_URL
     failOnError false
 }
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -100,8 +100,8 @@ install {
         // This generates POM.xml with proper parameters
         pom {
             project {
-                packaging 'aar'
-                name 'fileprovider'
+                packaging PACKAG_TYPE
+                name libName
                 url siteUrl
                 // Set your license
                 licenses {
@@ -112,9 +112,9 @@ install {
                 }
                 developers {
                     developer { //填写的一些基本信息
-                        id 'findsdk'
-                        name 'findsdk'
-                        email 'findsdk@gmail.com'
+                        id DEVELOPER_ID
+                        name DEVELOPER_NAME
+                        email DEVELOPER_EMAIL
                     }
                 }
                 scm {
@@ -135,9 +135,9 @@ bintray {
     key = properties.getProperty("bintray.apikey")   //读取 local.properties 文件里面的 bintray.apikey
     configurations = ['archives']
     pkg {
-        repo = "findsdk"
+        repo = REPO_NAME
         name = libName    //发布到JCenter上的项目名字，必须填写
-        desc = 'fileprovider'    //项目描述
+        desc = DESCRIPTION    //项目描述
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
