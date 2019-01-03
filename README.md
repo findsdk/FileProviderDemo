@@ -8,7 +8,7 @@ lastVersion ：1.0.0
 
 2、api
 
-    提供的FileUtil工具类
+    提供的FileUtils工具类
         
 3、使用方法
 
