@@ -2,7 +2,7 @@ package com.findsdk.demo.fileprovider;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 
 /**
  * Created by bvb on 16/8/29.
