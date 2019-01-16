@@ -5,8 +5,7 @@
 
     implementation 'com.findsdk.library:fileprovider:1.0.0'
     
-   androidx版本
-    
+    //androidx版本
     implementation 'com.findsdk.library.androidx:fileprovider:0.0.1'
 
 2、api
