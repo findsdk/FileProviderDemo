@@ -1,10 +1,12 @@
 #FileProviderDemo
 
-lastVersion ：1.0.0
 
 1、FileProvider工具
 
-    implementation 'com.findsdk.library:fileprovider:${lastVersion}'
+    implementation 'com.findsdk.library:fileprovider:1.0.0'
+    
+    //androidx版本
+    implementation 'com.findsdk.library.androidx:fileprovider:0.0.1'
 
 2、api
 
