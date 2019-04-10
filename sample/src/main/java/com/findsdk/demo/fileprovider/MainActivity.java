@@ -14,10 +14,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.findsdk.library.fileprovider.FileUtil;
+
 import java.io.File;
 import java.io.IOException;
-
-import com.findsdk.library.fileprovider.FileUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,13 +46,15 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkPermission(permissionRequestId_create);
+                createFile();
+//                checkPermission(permissionRequestId_create);
             }
         });
         findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkPermission(permissionRequestId_delete);
+                deleteAll();
+//                checkPermission(permissionRequestId_delete);
             }
         });
 
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createFile() {
-        File dir = FileUtils.getBasePath(this);
+        File dir = FileUtil.INSTANCE.getCacheDir(this);
         String name = "tmp_" + System.currentTimeMillis();
         File file = new File(dir, name);
         if (!file.exists()) {
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteAll() {
-        File dir = FileUtils.getBasePath(this);
+        File dir = FileUtil.INSTANCE.getCacheDir(this);
         deleteDir(dir);
     }
 
